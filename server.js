@@ -1,12 +1,20 @@
-import http from 'http';
-
-const PORT = 5000
+import http from "http";
+const PORT = process.env.PORT;
 
 const server = http.createServer((req, res) => {
-    res.write("Hello World!");
-    res.end();
-})
+ 
+  if (req.url === "/") {
+    res.writeHead(200, { "content-type": "text.html" });
+    res.end("<h1> Home Page</h1>");
+  } else if (req.url === '/about'){
+     res.writeHead(200, { "content-type": "text.html" });
+    res.end("<h1> About</h1>");
+  }else{
+    res.writeHead(404, { "content-type": "text.html" });
+    res.end("<h1> Not Found</h1>");
+  }
+});
 
 server.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
