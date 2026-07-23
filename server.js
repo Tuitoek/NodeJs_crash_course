@@ -16,7 +16,7 @@ console.log(__filename, __dirname);
 const server = http.createServer(async (req, res) => {
   try {
     //Check if GET Request
-    if (req.method === 'GET') {
+    if (req.method === "GET") {
       let filePath;
 
       if (req.url === "/") {
@@ -27,11 +27,12 @@ const server = http.createServer(async (req, res) => {
         res.writeHead(404, { "content-type": "text/html" });
         res.end("<h1> Not Found</h1>");
       }
-
+    //   Data is the file
       const data = await fs.readFile(filePath);
       res.setHeader("Content-Type", "text/html");
       res.write(data);
       res.end();
+
     } else {
       throw new Error("Method not allowed");
     }
