@@ -51,11 +51,22 @@ const notFoundHandler = (req, res) => {
   res.end("<h1> Not Found</h1>");
 };
 
+// Function to create server
 const server = createServer((req, res) => {
   logger(req, res, () => {
-  
-  )};
+    jsonMiddleware(req,res, () =>{
+        if (req.url === 'api/users' && req.method === 'GET'){
+            getUsersHandler(req, res);
+        } else if( req.url.match(/\api\/users\/([0-9] +)/) && req.method === "GET"){
+            getUserByIdHandler(req,res);
+        }else{
+            notFoundHandler(req,res);
+        }
+    })
+  });
 });
+
+
 
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
