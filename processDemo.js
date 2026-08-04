@@ -16,3 +16,16 @@ console.log(`\nProcess Title: ${process.title}`);
 
 // memoryUsage
 console.log(`\nMemory Usage:`, process.memoryUsage());
+
+// uptime
+console.log(`\nProcess Uptime: ${process.uptime()}`);
+
+// Register Event Listeners
+process.on('exit', (code) => {
+    console.log(`\nProcess exited with code: ${code}`);
+});
+
+// exit
+process.exit(0);
+
+
